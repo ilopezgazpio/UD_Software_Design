@@ -1,5 +1,9 @@
 Backup_labs
 
+# Intelij Idea
+*.iml
+.idea
+
 # Compiled class file
 *.class
 

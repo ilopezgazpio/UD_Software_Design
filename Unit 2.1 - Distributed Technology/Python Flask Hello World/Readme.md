@@ -22,7 +22,7 @@ curl http://IP:5000/todo1
 
 Accessible also through CLI, if requests packet is installed
 
-``` 
+```
 from requests import put, get
 >>> put('http://IP:5000/todo1', data={'message': 'Message1'}).json()
 {u'todo1': u'Message1'}
