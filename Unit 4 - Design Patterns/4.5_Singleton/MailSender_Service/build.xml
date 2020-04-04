@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="launch" name="4.5_MailSender_Service">
+	<property environment="env"/>
+	<property name="source.dir" location="src"/>
+   	<property name="build.dir" location="bin"/>
+	<property name="lib.dir" location="lib"/>
+	<property name="dest.email" value="dest.email@gmail.com"/>
+	
+	<path id="classpath">
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <pathelement location="${build.dir}"/>    	
+    </path>	
+	
+	<target name="compile" description="Builds the project">
+		<delete dir="${build.dir}"/>
+		<mkdir dir="${build.dir}"/>
+		<javac srcdir="${source.dir}" destdir="${build.dir}" classpathref="classpath" deprecation="true" fork="true" includeantruntime="no"/>
+    </target>
+	
+	<target name="launch" depends="compile" description="Runs the Server">
+		<java classname="es.deusto.ingenieria.sd.sms.server.gateway.MailSenderTest" classpathref="classpath" fork="true">
+	 		<arg value="${dest.email}"/> 
+        </java>
+    </target>
+</project>
