@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="help" name="4.6_GameAdventure_Strategy">    
+	<property environment="env"/>
+	<property name="source.dir" location="src"/>
+   	<property name="build.dir" location="bin"/>
+
+	<target name="help">
+		<echo>Usage: ant [build | run ]</echo>
+	</target>
+	
+	<target name="build" description="Builds the project">
+		<delete dir="${build.dir}"/>
+		<mkdir dir="${build.dir}"/>
+		<javac srcdir="${source.dir}" destdir="${build.dir}" classpath="${build.dir}" deprecation="true" fork="true" includeantruntime="false"/>
+    </target>
+	    
+	<target name="run" depends="build" description="Runs program">
+		<java classname="es.deusto.ingenieria.sd.strategy.game.GameTester" classpath="${build.dir}" fork="true">
+        </java>
+    </target>
+</project>
