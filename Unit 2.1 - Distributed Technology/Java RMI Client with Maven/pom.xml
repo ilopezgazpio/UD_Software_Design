@@ -1,0 +1,119 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>es.deusto</groupId>
+    <artifactId>RMI-example-maven</artifactId>
+    <packaging>jar</packaging>
+    <version>3.0</version>
+
+
+    <properties>
+        <config.files.dir>.</config.files.dir>
+        <encoding>UTF-8</encoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/</sourceDirectory>
+        <testSourceDirectory>src/</testSourceDirectory>
+
+        <plugins>
+
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-antrun-plugin</artifactId>
+              <version>1.8</version>
+
+              <executions>
+               <execution>
+                <id>run-ant</id>
+                <phase>compile</phase>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+               <configuration>
+                  <target>
+                     <ant antfile="${basedir}/build.xml">
+                        <target name="client"/>
+                     </ant>
+                  </target>
+               </configuration>
+              </execution>
+              </executions>
+
+              <dependencies>
+                 <dependency>
+                    <groupId>commons-net</groupId>
+                    <artifactId>commons-net</artifactId>
+                    <version>1.4.1</version>
+                 </dependency>
+
+                 <dependency>
+                   <groupId>org.apache.ant</groupId>
+                   <artifactId>ant-commons-net</artifactId>
+                   <version>1.8.1</version>
+                  </dependency>
+               </dependencies>
+
+          
+
+           </plugin>
+
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${basedir}</directory>
+                            <includes>
+                                <include>*.log</include>
+                                <include>*.ods</include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+        
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+
+                <configuration>
+                    <mainClass>es.deusto.ingenieria.sd.jdo.accounts.Main</mainClass>
+                    <systemProperties>
+                        <systemProperty>
+                            <key>log4j.configuration</key>
+                            <value>file:${config.files.dir}/log4j.properties</value>
+                        </systemProperty>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+         
+         
+        </plugins>
+    </build>
+</project>
+
