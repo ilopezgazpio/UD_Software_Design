@@ -3,6 +3,8 @@ Backup_labs
 # Intelij Idea
 *.iml
 .idea
+.project
+.classpath
 
 # Compiled class file
 *.class
@@ -27,3 +29,7 @@ Backup_labs
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+#Residuals
+target
+/*.gitignore
