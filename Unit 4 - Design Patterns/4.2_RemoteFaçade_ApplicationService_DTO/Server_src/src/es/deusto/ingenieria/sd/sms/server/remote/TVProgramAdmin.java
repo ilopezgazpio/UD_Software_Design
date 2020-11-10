@@ -2,11 +2,9 @@ package es.deusto.ingenieria.sd.sms.server.remote;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 import java.util.List;
 
 import es.deusto.ingenieria.sd.sms.server.TVProgramService;
-import es.deusto.ingenieria.sd.sms.server.data.dto.TVProgramAssembler;
 import es.deusto.ingenieria.sd.sms.server.data.dto.TVProgramDTO;
 
 //This class implements Façade and AppService Patterns
@@ -14,18 +12,18 @@ public class TVProgramAdmin extends UnicastRemoteObject implements ITVProgramAdm
 {
 
 	private static final long serialVersionUID = 1L;
-	private TVProgramService progServ;
+	private TVProgramService appService;
 
-	public TVProgramAdmin(TVProgramService progServ) throws RemoteException 
+	public TVProgramAdmin(TVProgramService appService) throws RemoteException
 	{
 		super();
-		this.progServ = progServ;
+		this.appService = this.appService;
 	}
 
 	@Override
 	public void newTVProgram(String acronym, String description) throws RemoteException 
 	{
-		// ADD YOUR CODE HERE - CREATING A NEW TV PROGRAM
+		appService.createTVProgram(acronym, description);
 	}
 
 	@Override

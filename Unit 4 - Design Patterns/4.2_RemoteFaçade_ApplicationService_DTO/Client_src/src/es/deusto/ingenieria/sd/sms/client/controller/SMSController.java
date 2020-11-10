@@ -38,6 +38,11 @@ public class SMSController
 	public void closeTVProgram(String acro) 
 	{
 		// ADD YOUR CODE HERE
+		try {
+			rsl.getAdminService().closeTVProgram(acro);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void addMaximumNumberMessagesRestriction() 
