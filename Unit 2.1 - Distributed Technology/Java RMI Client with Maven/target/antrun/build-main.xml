@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<project name="maven-antrun-" default="main"  >
-<target name="main">
-  <ant antfile="/home/inigo/Drive_lgazpio/00_Universidad/Deusto/00.Donostia/2.Diseño_software_(Curso_4)-Semestre_2/UD_Software_Design/Unit 2.1 - Distributed Technology/Java RMI Client with Maven/build.xml">
-    <target name="client"/>
-  </ant>
-</target>
-</project>
