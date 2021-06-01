@@ -3,14 +3,15 @@ RMI example with Maven
 
 ## Pre-requisites
 1. Apache Maven tool must be installed and included in the binaries path of environmental variables
-2. Inspect Java RMI example with Ant project
-3. Add maven-ant-run plugin to import the ant build.xml file
-4. Inspect the pom, plugins section
-5. Run the code :)
+2. Inspect Java code
+3. Inspect the pom, plugins section
+4. Run the code :)
 
 ## Usage
 ```
 mvn [validate | clean | compile ]
+
+mvn exec:java@frontend
 ```
 
 ```mvn validate```: validate the project is correct and all necessary information is available
