@@ -1,0 +1,101 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>es.deusto</groupId>
+    <artifactId>RMI-example-maven</artifactId>
+    <packaging>jar</packaging>
+    <version>3.0</version>
+
+
+    <properties>
+        <config.files.dir>.</config.files.dir>
+        <encoding>UTF-8</encoding>
+        <server.host>127.0.0.1</server.host>
+        <server.port>1099</server.port>
+        <server.name>HelloServer</server.name>
+        <policy.file>security/java.policy</policy.file>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/</sourceDirectory>
+        <testSourceDirectory>src/</testSourceDirectory>
+
+        <plugins>
+
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${basedir}</directory>
+                            <includes>
+                                <include>*.log</include>
+                                <include>*.ods</include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <!-- Profile runs with mvn exec:java@backend -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+
+                <executions>
+
+                    <execution>
+                        <id>backend</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <executable>java</executable>
+                            <mainClass>es.deusto.ingenieria.sd.rmi.server.Server</mainClass>
+
+                            <arguments>
+                                <argument>${server.host}</argument>
+                                <argument>${server.port}</argument>
+                                <argument>${server.name}</argument>
+                            </arguments>
+
+                            <systemProperties>
+                                <systemProperty>
+                                    <key>java.rmi.server.CodeBase</key>
+                                    <value>file:${maven.compile.classpath}/</value>
+                                    <key>java.security.policy</key>
+                                    <value>${policy.file}</value>
+                                </systemProperty>
+                            </systemProperties>
+
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>  
+</project>
+
